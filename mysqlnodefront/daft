@@ -1,0 +1,12 @@
+1- Image de la base de donneée 
+   - creation de la base de donnée nodepai 
+   - user: nodepai
+   - password: nodepai
+2- Image de nodejs
+   - installation de node et npm 
+   - installation de mysql2 sequelize express 
+   - creation du model User et connexion à la base de donné!Equals 
+   - exposition de l'api pour la liste et post des utilsiateur 
+3- Image nginx
+    - ajout d'un fichier index qui recupere la liste et qui soumet un utilisateur 
+    

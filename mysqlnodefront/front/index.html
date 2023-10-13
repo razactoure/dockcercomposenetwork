@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="liste">
+     
+    </div>
+    <br>
+    <div id="add">
+        <form id="sibmit" action="">
+            <input type="text" id="login"/>
+            <br><br>
+            <input type="text" id="pass"/>
+            <br>
+            <br>
+            <button id="go" type="submit">GO</button>
+        </form>
+    </div>
+    
+</body>
+
+<script>
+let url = 'htpp://api'
+
+function getAll() {
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+            // Vous pouvez ajouter d'autres en-têtes ici si nécessaire
+        }
+})
+  .then(response => response.json())
+  .then(data => {
+    data.data.forEach(da => {
+        let element = document.createElement('li')
+        element.innerText =  `Login: ${da.login} | Pass: ${da.password}`
+        document.querySelector("#liste").append(element)
+     });
+  })
+  .catch(error => {
+    console.error('Erreur GET :', error);
+  });
+}
+document.querySelector("#sibmit").addEventListener("submit" , (eve) => {
+    eve.preventDefault();
+    if(document.querySelector("#login").value && 
+    document.querySelector("#pass").value) {
+        const postData = {
+            login: document.querySelector("#login").value,
+            password: document.querySelector("#pass").value
+            };
+
+// Appel API en méthode POST avec JSON
+fetch(url, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+    // Vous pouvez ajouter d'autres en-têtes ici si nécessaire
+  },
+  body: JSON.stringify(postData)
+})
+  .then(response => response.json())
+  .then(data => {
+    getAll()
+  })
+  .catch(error => {
+    console.error('Erreur POST :', error);
+  });
+    }else {
+        alert(12)
+    }
+})
+</script>
+</html>
