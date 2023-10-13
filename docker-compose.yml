@@ -1,0 +1,19 @@
+version: "3"
+services:
+  backend:
+    build: ./api/
+    container_name: backend
+    ports:
+      - "3000:3000"
+    networks:
+      - application
+  frontend:
+    build: ./front/
+    container_name: frontend
+    ports:
+      - "8080:80"
+    networks:
+      - application
+networks:
+  application:
+    driver: host

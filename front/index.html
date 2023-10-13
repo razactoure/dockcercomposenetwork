@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae pariatur quisquam officiis dignissimos deserunt praesentium, non quod, inventore quia quidem at nesciunt omnis consequatur asperiores ratione delectus rem labore adipisci.
+    <div id="id"></div>
+</body>
+    <script>
+        let host='http://backend:8080'
+        fetch(host).then(res => {
+            document.querySelector("#id").innerHTML = res
+        })
+    </script>
+
+</html>
