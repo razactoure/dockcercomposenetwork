@@ -1,0 +1,32 @@
+version: "3"
+services:
+  nginx:
+    image: ./nginx/
+    container_name: nginxodoo
+    ports:
+      - "8080:80"
+  odoo:
+    image: odoo:15.0
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    depends_on:
+      - postgres
+      - nginx
+    ports:
+      - "127.0.0.1:8069:8069"
+    volumes:
+      - data:/var/lib/odoo
+  postgres:
+    image: postgres:13
+    environment:
+      - HOST=postgres
+      - USER=odoo
+      - PASSWORD=postgres
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+volumes:
+  data:
+  db:
